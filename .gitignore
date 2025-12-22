@@ -23,3 +23,96 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 .NOTE
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage
+coverage/
+.nyc_output/
+coverage/**/*
+*.lcov
+
+# Test output
+.vitest/
+
+# Build outputs
+dist/
+out/
+
+# Editor directories and files
+.vscode/
+*.code-workspace
+.idea/
+*.iml
+
+# Secrets & credentials (DO NOT commit these to a public repo)
+# Environment files
+.env
+.env.*
+!.env.example
+!.env.test
+.env.local
+.env.*.local
+
+# Private keys & certs
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+
+# SSH keys
+.ssh/
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+
+# Docker
+.docker/config.json
+**/.docker/config.json
+
+# Cloud credentials / service accounts
+.aws/
+.aws/credentials
+.gcloud/
+google-services.json
+service-account.json
+credentials.json
+
+# Kubernetes
+.kube/
+
+# Package manager files that may contain auth tokens
+.npmrc
+.yarnrc
+.pnpmfile.cjs
+
+# Databases
+*.sqlite
+*.sqlite3
+*.db
+
+# Misc
+*.secret
+
+# Keep generated and local-only files out
+/.svelte-kit
+/.output
+/build
+
+# OS
+.DS_Store
+Thumbs.db
