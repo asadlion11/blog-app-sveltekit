@@ -44,7 +44,7 @@
 			{
 				onSuccess: async () => {
 					//after successful signup redirect to login page
-					goto(resolve('/auth/login'));
+					goto(resolve('/'));
 				}
 			}
 		);
