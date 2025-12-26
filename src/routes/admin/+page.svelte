@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { get_all_posts, get_current_user_posts } from './posts.remote';
+	import { get_current_user_posts } from './posts.remote';
 	import * as Table from '$lib/components/ui/table/index.js';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { resolve } from '$app/paths';

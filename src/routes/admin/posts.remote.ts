@@ -8,7 +8,7 @@ import * as v from "valibot"
 
 
 // get all post from database using drizzle orm
-export const get_all_posts = query(async () => db.query.post.findMany())
+// export const get_all_posts = query(async () => db.query.post.findMany())
 
 //get current user posts
 export const get_current_user_posts = query(async () => {
