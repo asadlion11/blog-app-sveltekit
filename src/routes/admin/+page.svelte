@@ -10,7 +10,7 @@
 <div class="mx-10 my-10 w-3/4">
 	<div class="mb-6 flex items-center justify-between">
 		<h1 class="mb-10 text-lg font-bold">All Posts</h1>
-		<Button variant="link" class="cursor-pointer bg-[#4e84da] text-white"
+		<Button variant="link" class="cursor-pointer bg-[#6BA1E0] text-white"
 			><a href="/admin/post/new">Add New Post</a></Button
 		>
 	</div>
