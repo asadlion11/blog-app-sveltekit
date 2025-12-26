@@ -17,7 +17,7 @@
 			<Card.Action></Card.Action>
 		</Card.Header>
 		<Card.Content>
-			<form {...update_post}>
+			<form  {...update_post} >
 				<div class="flex flex-col gap-6">
 					<div class="grid gap-2">
 						<Label for="id">Id</Label>

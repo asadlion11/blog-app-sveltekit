@@ -6,6 +6,7 @@ import { error, redirect } from "@sveltejs/kit";
 import { eq } from "drizzle-orm";
 import * as v from "valibot"
 
+
 // get all post from database using drizzle orm
 export const get_all_posts = query(async () => db.query.post.findMany())
 
