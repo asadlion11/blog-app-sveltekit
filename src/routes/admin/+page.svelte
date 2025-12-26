@@ -1,11 +1,14 @@
 <script lang="ts">
-	import { get_all_posts } from './posts.remote';
+	import { get_all_posts, get_current_user_posts } from './posts.remote';
 	import * as Table from '$lib/components/ui/table/index.js';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { resolve } from '$app/paths';
 
 	//get all posts from server(remote function)
-	const posts = await get_all_posts();
+	// const posts = await get_all_posts();
+
+	//get all of the current user from server(remote function)
+	const posts = await get_current_user_posts();
 </script>
 
 <div class="mx-10 my-10 w-3/4">

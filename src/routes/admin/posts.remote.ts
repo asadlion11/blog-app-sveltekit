@@ -10,6 +10,24 @@ import * as v from "valibot"
 // get all post from database using drizzle orm
 export const get_all_posts = query(async () => db.query.post.findMany())
 
+//get current user posts
+export const get_current_user_posts = query(async () => {
+	const event = getRequestEvent();
+
+	const session = await auth.api.getSession({
+		headers: event.request.headers
+	});
+
+	if (!session?.user?.id) {
+		throw error(401, 'Unauthorized');
+	}
+
+	return db.query.post.findMany({
+		where: (post, { eq }) => eq(post.authorId, session.user.id),
+		orderBy: (post, { desc }) => desc(post.createdAt)
+	});
+});
+
 // get single post by id from database
 export const get_post_by_id = query(v.string(), async (id) => 
     db.query.post.findFirst({
