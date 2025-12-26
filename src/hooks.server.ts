@@ -15,6 +15,7 @@ const sessionHandle: Handle = async ({ event, resolve}) => {
         headers: event.request.headers
     })
     // console.log('Session in handle:', session);
+      // session is avaialble user info and session info
     event.locals.user = session?.user
     const response = await resolve(event)
     return response;
