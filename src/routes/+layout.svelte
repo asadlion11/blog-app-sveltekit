@@ -1,13 +1,31 @@
 <script lang="ts">
-	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
-	import { ModeWatcher } from 'mode-watcher';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
+	import { ModeWatcher } from 'mode-watcher';
+	import './layout.css';
+	import { get_user } from './user.remote';
+	import Button from '$lib/components/ui/button/button.svelte';
 	import { authClient } from '$lib/auth-client';
+	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 
 	let { children } = $props();
-	const session = authClient.useSession();
+	// rerun when session changes/ when user data changes
+	const user = $derived(await get_user());
+
 	let open = $state(false);
+
+	//logout function
+	function logout() {
+		authClient.signOut({
+			fetchOptions: {
+				onSuccess: async () => {
+					await get_user().refresh();
+					goto(resolve('/auth/login'));
+				}
+			}
+		});
+	}
 </script>
 
 <!-- Header -->
@@ -19,26 +37,40 @@
 				<li>
 					<a href="/" class="text-sm font-medium underline-offset-4 hover:underline"> Home </a>
 				</li>
-				<li>
-					<a href="/admin/" class="text-sm font-medium underline-offset-4 hover:underline">
-						Blog
-					</a>
-				</li>
-				<!-- <li class="relative">
-					<button
-						class="flex cursor-pointer items-center text-sm font-medium underline-offset-4"
-						onclick={() => (open = !open)}
-					>
-						{$session.data?.user.name}
-						<span class="text-lg">▾</span>
-					</button>
+				{#if user?.id}
+					<li>
+						<a href="/admin/" class="text-sm font-medium underline-offset-4 hover:underline">
+							Blog
+						</a>
+					</li>
+					<li class="relative">
+						<button
+							class="flex cursor-pointer items-center gap-1 text-sm font-medium underline-offset-4"
+							onclick={() => (open = !open)}
+						>
+							{user?.username}
+							<span class="text-xs">▾</span>
+						</button>
 
-					{#if open}
-						<div class="absolute right-0 z-50 mt-2 w-32 cursor-pointer rounded-md shadow-md">
-							<a href="/logout" class="block px-4 py-2 text-sm hover:bg-accent"> Logout </a>
-						</div>
-					{/if}
-				</li> -->
+						{#if open}
+							<div class="absolute right-0 z-50 mt-2 w-32">
+								<Button variant="link" class="cursor-pointer" onclick={logout}>Logout</Button>
+							</div>
+						{/if}
+					</li>
+				{/if}
+				{#if !user?.id}
+					<li>
+						<a href="/auth/signup" class="text-sm font-medium underline-offset-4 hover:underline">
+							Sign Up
+						</a>
+					</li>
+					<li>
+						<a href="/auth/login" class="text-sm font-medium underline-offset-4 hover:underline">
+							Login
+						</a>
+					</li>
+				{/if}
 			</ul>
 		</nav>
 

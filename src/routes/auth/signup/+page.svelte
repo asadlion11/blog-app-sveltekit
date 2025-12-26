@@ -44,7 +44,8 @@
 			{
 				onSuccess: async () => {
 					//after successful signup redirect to login page
-					goto(resolve('/'));
+					await goto(resolve('/'), { replaceState: true });
+					window.location.reload();
 				}
 			}
 		);
@@ -73,7 +74,12 @@
 							<Label for="password">Password</Label>
 						</div>
 						<div class="relative flex flex-row items-center">
-							<Input id="password" name="password" type={showPassword ? 'text' : 'password'} required />
+							<Input
+								id="password"
+								name="password"
+								type={showPassword ? 'text' : 'password'}
+								required
+							/>
 							<button
 								type="button"
 								class="absolute top-1/2 right-3 -translate-y-1/2 text-muted-foreground hover:text-foreground"
@@ -95,7 +101,7 @@
 						<div class="relative flex flex-row items-center">
 							<Input
 								id="confirmPassword"
-                                name="confirmPassword"
+								name="confirmPassword"
 								type={showConfirmPassword ? 'text' : 'password'}
 								required
 							/>
