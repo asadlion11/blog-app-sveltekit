@@ -2,6 +2,7 @@
 	import { get_all_posts } from './posts.remote';
 	import * as Table from '$lib/components/ui/table/index.js';
 	import Button from '$lib/components/ui/button/button.svelte';
+	import { resolve } from '$app/paths';
 
 	//get all posts from server(remote function)
 	const posts = await get_all_posts();
@@ -11,7 +12,7 @@
 	<div class="mb-6 flex items-center justify-between">
 		<h1 class="mb-10 text-lg font-bold">All Posts</h1>
 		<Button variant="link" class="cursor-pointer bg-[#6BA1E0] text-white"
-			><a href="/admin/post/new">Add New Post</a></Button
+			><a href={resolve("/admin/post/new")}>Add New Post</a></Button
 		>
 	</div>
 	<Table.Root>
@@ -31,7 +32,7 @@
 					<Table.Cell class="text-end">
 						<div class="mt-2 flex justify-end gap-2">
 							<Button class="cursor-pointer rounded-md bg-blue-500 px-3 py-1 text-white"
-								>Edit</Button
+								><a href={resolve(`/admin/post/${post.id}`)}>Edit</a></Button
 							>
 							<Button class="cursor-pointer rounded-md bg-red-500 px-3 py-1 text-white"
 								>Delete</Button
