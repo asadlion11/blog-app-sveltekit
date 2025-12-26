@@ -41,11 +41,11 @@
 							</button>
 						</div>
 					</div>
+					<Button type="submit" class="w-full cursor-pointer">Login</Button>
 				</div>
 			</form>
 		</Card.Content>
 		<Card.Footer class="flex-col gap-2">
-			<Button type="submit" class="w-full cursor-pointer">Login</Button>
 			<Button variant="link" class="cursor-pointer"
 				>Don't have an account? <a href="/auth/signup">Sign Up</a></Button
 			>
