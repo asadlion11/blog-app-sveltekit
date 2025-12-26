@@ -97,3 +97,17 @@ export const update_post = form(
 
         redirect(303, '/admin')
 })
+
+//dele post
+export const delete_post = query(v.string(), async (id) => {
+	const event = getRequestEvent();
+	const session = await auth.api.getSession({
+		headers: event.request.headers
+	});
+
+	if (!session?.user?.id) throw error(401, 'Unauthorized');
+
+	await db.delete(post).where(eq(post.id, id));
+
+	return true;
+});
