@@ -58,6 +58,7 @@
 		"bits-ui": "^2.14.4",
 		"lucide": "^0.562.0",
 		"mode-watcher": "^1.1.0",
-		"postgres": "^3.4.7"
+		"postgres": "^3.4.7",
+		"valibot": "^1.2.0"
 	}
 }
